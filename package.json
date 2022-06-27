@@ -1,0 +1,42 @@
+{
+  "name": "@exxfi/kit",
+  "version": "1.0.0",
+  "description": "exxfi migrator",
+  "author": "exxfi",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "yarn workspace @exxfi/app dev",
+    "build": "yarn workspace @exxfi/app build",
+    "clean": "rm -rf packages/app/build && rm -rf packages/contracts/artifacts && rm -rf packages/contracts/cache && rm -rf packages/contracts/types",
+    "start": "yarn workspace @exxfi/app start",
+    "chain": "yarn workspace @exxfi/contracts chain",
+    "deploy": "yarn workspace @exxfi/contracts deploy",
+    "deploy:mainnet": "yarn workspace @exxfi/contracts deploy:mainnet",
+    "deploy:testnet": "yarn workspace @exxfi/contracts deploy:testnet",
+    "export": "yarn workspace @exxfi/contracts export",
+    "flatten": "cd packages/contracts && npx hardhat flatten",
+    "fork": "yarn workspace @exxfi/contracts fork",
+    "generate": "yarn workspace @exxfi/contracts generate",
+    "matrix": "yarn workspace @exxfi/contracts matrix",
+    "mineContractAddress": "cd packages/contracts && npx contracts mineContractAddress",
+    "node": "yarn workspace @exxfi/contracts chain",
+    "send": "yarn workspace @exxfi/contracts send",
+    "test": "yarn workspace @exxfi/contracts test",
+    "wallet": "cd packages/contracts && npx contracts wallet",
+    "lab": "yarn workspace @exxfi/lab start",
+    "format": "yarn workspace @exxfi/app format && yarn workspace @exxfi/contracts format",
+    "postinstall": "rimraf node_modules/babel-loader"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "**/@openzeppelin/contracts-upgradeable/**",
+      "**/@openzeppelin/contracts",
+      "**/@exxfi/framework",
+      "**/@exxfi/solidity"
+    ]
+  }
+}
