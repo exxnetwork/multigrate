@@ -28,8 +28,8 @@ const MigrateTokenModal = ({
   const migrateTokenHandler = async () => {
     setMigrating(true);
     try {
-      const res = await contract.exchange(ssnAmount, {
-        value: ssnAmount,
+      const res = await contract.exchange({
+        value: amount,
         gasLimit: 200000,
       });
 
