@@ -29,7 +29,10 @@ const MigrateTokenModal = ({
     setMigrating(true);
     try {
       const res = await contract.exchange({
+
+
         value: amount,
+
         gasLimit: 200000,
       });
 
