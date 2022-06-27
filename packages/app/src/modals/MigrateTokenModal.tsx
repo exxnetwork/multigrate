@@ -5,7 +5,7 @@ import Button from "components/Button";
 import RefreshIcon from "icons/RefreshIcon";
 import ArrowCircleIcon from "icons/ArrowCircle";
 import { useExxfiContract } from "hooks/useContract";
-import { ethers } from "ethers";
+import { ethers, BigNumber } from "ethers";
 
 interface MigrateTokenModalProps {
   isOpen: boolean;
@@ -23,7 +23,7 @@ const MigrateTokenModal = ({
 
   console.log("CONTRACT_", contract);
 
-  const amount = ethers.utils.parseEther(Number(ssnAmount).toString());
+  const amount = ethers.utils.parseEther(ssnAmount.toString());
 
   const migrateTokenHandler = async () => {
     setMigrating(true);
