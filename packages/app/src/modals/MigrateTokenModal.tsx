@@ -23,12 +23,13 @@ const MigrateTokenModal = ({
 
   console.log("CONTRACT_", contract);
 
-  const amount = ethers.utils.parseEther(ssnAmount.toString());
+  const amount = ethers.utils.parseEther(Number(ssnAmount).toString());
 
   const migrateTokenHandler = async () => {
     setMigrating(true);
     try {
       const res = await contract.exchange({
+
 
         value: amount,
 
