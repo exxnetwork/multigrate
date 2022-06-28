@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Button from "components/Button";
 import CoinImg from "/public/assets/images/coin.svg";
@@ -21,20 +21,40 @@ const WrappedSSN = ({
   const { library, accounts, account, connector, chainId } =
     useActiveWeb3React();
 
-  //   console.log("CONTRACT_", contract);
-  //   console.log("SSN_CONTRACT_", ssnContract);
+  const [allowance, setAllowance] = useState(BigNumber.from(0));
+
+  useEffect(() => {
+    contract && checkAllowance();
+  }, [contract]);
+
+  const checkAllowance = async () => {
+    try {
+      const res = await ssnContract.allowance(account, SPENDER_ADDRESS);
+
+      console.log("RES", res);
+
+      setAllowance(res);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const approveMigrationHandler = async (e: any) => {
     e.preventDefault();
 
-    try {
-      const res = await ssnContract.approve(
-        SPENDER_ADDRESS,
-        Number(ssnAmount) * 1000000000
-      );
-      console.log("approve res", res);
+    const max = ethers.constants.MaxUint256;
 
-      toggleMigrateTokenModal();
+    // console.log("VVVV", ethers.utils.formatUnits(allowance, 9));
+
+    try {
+      if (allowance.lt(ethers.utils.parseUnits(ssnAmount, 9))) {
+        const res = await ssnContract.approve(SPENDER_ADDRESS, max);
+        console.log("approve res", res);
+
+        toggleMigrateTokenModal();
+      } else {
+        toggleMigrateTokenModal();
+      }
     } catch (error) {
       console.error("approve err", error);
     }
