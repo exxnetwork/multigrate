@@ -8,6 +8,7 @@ import { useExxfiContract } from "hooks/useContract";
 import { ethers, BigNumber } from "ethers";
 import useActiveWeb3React from "hooks/useActiveWeb3React";
 
+
 interface MigrateTokenModalProps {
   isOpen: boolean;
   toggleMigrateTokenModal: () => void;
@@ -25,11 +26,14 @@ const MigrateTokenModal = ({
 
   console.log("CONTRACT_", contract);
 
+
   // const AMOUNT = ethers.utils.parseUnits(ssnAmount, 18);
+
 
   const migrateTokenHandler = async () => {
     setMigrating(true);
     try {
+
       const gasLimit = await contract.estimateGas.exchange(ssnAmount);
 
       console.log("GAS_LIMIT", gasLimit);
@@ -37,6 +41,7 @@ const MigrateTokenModal = ({
       // const AMOUNT = ethers.utils.parseUnits(ssnAmount.toString(), 9);
 
       const res = await contract?.exchange(ssnAmount);
+
 
       console.log("migrate res", res);
 
