@@ -27,23 +27,27 @@ const ModalHeader: FC<ModalHeaderProps> = ({
           className="cursor-pointer "
         />
       )}
-      {title && (
+
+      <div className="flex justify-between ">
+        {title && (
+          <div
+            className={`px-2 py-1 rounded font-work_sans ${
+              textBg && "bg-primary bg-grey"
+            } ${titleClassName}`}
+          >
+            <h3 className="font-bold text-xl">{title}</h3>
+            <p className="font-medium text-sm text-grey mt-3">
+              Select your preferred wallet and Let’s Go 🚀
+            </p>
+          </div>
+        )}
+
         <div
-          className={`px-2 py-1 rounded ${
-            textBg && "bg-primary bg-grey"
-          } ${titleClassName}`}
+          className="flex items-center justify-center w-10 h-10 text-white rounded-full cursor-pointer primary"
+          onClick={onClose}
         >
-          <h3 className="font-bold">{title}</h3>
+          <Close />
         </div>
-      )}
-      {/* <div className='flex items-center justify-center w-6 h-6 cursor-pointer text-primary hover:text-high-emphesis' onClick={onClose}>
-        <XCircle width={24} height={24} />
-      </div> */}
-      <div
-        className="flex items-center justify-center w-10 h-10 text-gray-500 rounded-full cursor-pointer primary bg-white"
-        onClick={onClose}
-      >
-        <Close />
       </div>
     </div>
   );

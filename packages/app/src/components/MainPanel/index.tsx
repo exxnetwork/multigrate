@@ -20,11 +20,15 @@ interface MainPanelProps {
 }
 
 const MainPanel = ({ pageTitle, subTitle, children }: MainPanelProps) => {
+  const { account } = useActiveWeb3React();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [disconnect, setDisconnect] = useState<boolean>(false);
   const [isDarkMode, toggleDarkMode] = useDarkMode();
 
+  const toggleDisconnectModal = () => setDisconnect(!disconnect);
   const toggleMobileMenuModal = () => setIsOpen(!isOpen);
+
+  console.log("CONFIRM+_", disconnect, account);
 
   return (
     <>
@@ -67,13 +71,18 @@ const MainPanel = ({ pageTitle, subTitle, children }: MainPanelProps) => {
             </h1>
           </div>
           <div className="relative">
-            <Web3Status title="Connect Wallet" />
-            {/* {disconnect && <DisconnectButton />} */}
+            <Web3Status
+              title="Connect Wallet"
+              toggleDisconnectModal={toggleDisconnectModal}
+            />
+            {disconnect && account && <DisconnectButton />}
           </div>
         </div>
         <main className="px-5 pb-40 lg:pb-0 lg:px-10 h-auto">{children}</main>
 
-        <ExtraMobileMenu {...{ toggleDarkMode, isDarkMode }} />
+        <ExtraMobileMenu
+          {...{ toggleDarkMode, isDarkMode, disconnect, toggleDisconnectModal }}
+        />
       </div>
       <MobileMenuModal {...{ isOpen, toggleMobileMenuModal }} />
     </>
@@ -83,56 +92,74 @@ const MainPanel = ({ pageTitle, subTitle, children }: MainPanelProps) => {
 export default MainPanel;
 
 const DisconnectButton = () => {
+  const { connector } = useActiveWeb3React();
   return (
-    <button className="bg-[#F8F8F8] rounded-lg px-10 h-14 block absolute right-0 top-20">
-      <h1 className="font-outfit font-medium text-base text-black">
-        Disconnect Wallet
-      </h1>
-    </button>
+    <div className="px-5 lg:w-fit absolute -top-10 lg:right-0 lg:top-20 z-50">
+      <button
+        onClick={() => connector.deactivate()}
+        className="bg-[#F8F8F8] rounded-lg px-10 h-14"
+      >
+        <h1 className="font-outfit font-medium text-base text-black">
+          Disconnect Wallet
+        </h1>
+      </button>
+    </div>
   );
 };
 
-const ExtraMobileMenu = ({ toggleDarkMode, isDarkMode }) => {
+const ExtraMobileMenu = ({
+  toggleDarkMode,
+  isDarkMode,
+  disconnect,
+  toggleDisconnectModal,
+}) => {
   const toggleWalletModal = useWalletModalToggle();
   const { library, accounts, account, connector, chainId } =
     useActiveWeb3React();
 
   return (
-    <div className="py-5 bg-white dark:bg-dark2 fixed bottom-0 left-0 w-full flex lg:hidden items-center justify-between gap-x-7 px-5">
-      <div
-        onClick={toggleDarkMode}
-        className={`w-14 h-14 flex flex-col justify-center rounded-full transition-all delay-75 ease-in-out ${
-          isDarkMode ? "bg-grey1" : "bg-grey5"
-        }`}
-      >
+    <div className="relative">
+      <div className="py-5 bg-white dark:bg-dark2 fixed bottom-0 left-0 w-full flex lg:hidden items-center justify-between gap-x-7 px-5">
         <div
-          className={`transition-all delay-150 ease-linear ${
-            isDarkMode ? "translate-x-8 text-grey5" : "translate-x-2 text-white"
+          onClick={toggleDarkMode}
+          className={`w-14 h-14 flex flex-col justify-center rounded-full transition-all delay-75 ease-in-out ${
+            isDarkMode ? "bg-grey1" : "bg-grey5"
           }`}
         >
-          <ModeEclipse isDarkMode={isDarkMode} className="w-4 h-8" />
-        </div>
-      </div>
-
-      <Button
-        onClick={toggleWalletModal}
-        className="flex justify-between flex-1 px-3"
-      >
-        <>
-          <div className="w-14">
-            <Image
-              src={MetaMaskImg.src}
-              alt="metamask"
-              width={MetaMaskImg.width}
-              height={MetaMaskImg.height}
-              layout="responsive"
-            />
+          <div
+            className={`transition-all delay-150 ease-linear ${
+              isDarkMode
+                ? "translate-x-8 text-grey5"
+                : "translate-x-2 text-white"
+            }`}
+          >
+            <ModeEclipse isDarkMode={isDarkMode} className="w-4 h-8" />
           </div>
-          <h1 className="flex-1 font-outfit font-bold text-base text-white">
-            {account ? `${shortenAddress(account)}` : "Connect Wallet"}
-          </h1>
-        </>
-      </Button>
+        </div>
+
+        <Button
+          onClick={() => {
+            account ? toggleDisconnectModal() : toggleWalletModal();
+          }}
+          className="flex justify-between flex-1 px-3"
+        >
+          <>
+            <div className="w-14">
+              <Image
+                src={MetaMaskImg.src}
+                alt="metamask"
+                width={MetaMaskImg.width}
+                height={MetaMaskImg.height}
+                layout="responsive"
+              />
+            </div>
+            <h1 className="flex-1 font-outfit font-bold text-base text-white">
+              {account ? `${shortenAddress(account)}` : "Connect Wallet"}
+            </h1>
+          </>
+        </Button>
+      </div>
+      {disconnect && account && <DisconnectButton />}
     </div>
   );
 };

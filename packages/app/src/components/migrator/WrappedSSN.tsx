@@ -25,10 +25,28 @@ const WrappedSSN = ({
   const balances = useBalances(library, accounts);
 
   const [allowance, setAllowance] = useState(BigNumber.from(0));
+  const [ssnBalance, setSSNBalance] = useState("");
+
+  console.log("BALANCE", ssnBalance);
 
   useEffect(() => {
-    contract && checkAllowance();
+    if (contract) {
+      checkAllowance();
+      fetchSSNBalance();
+    }
   }, [contract]);
+
+  const fetchSSNBalance = async () => {
+    try {
+      const res = await ssnContract.balanceOf(account);
+
+      setSSNBalance(
+        (Number(ethers.utils.formatEther(res)) * 10 ** 9).toFixed(2).toString()
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const checkAllowance = async () => {
     try {
@@ -77,7 +95,7 @@ const WrappedSSN = ({
         </h1>
         <h1 className="font-outfit font-bold text-sm text-dark1 dark:text-grey text-opacity-50 dark:text-opacity-50">
           Balance: &nbsp;
-          {balances?.[0] ? ` ${formatBalance(balances[0], 18, 4)}` : null}{" "}
+          {ssnBalance}
         </h1>
       </div>
       <form onSubmit={approveMigrationHandler}>
@@ -101,13 +119,7 @@ const WrappedSSN = ({
               className="flex-1 bg-transparent pl-3 pr-6 h-full font-outfit text-sm text-dark1 dark:text-grey"
             />
           </div>
-          <button
-            onClick={() =>
-              setSsnAmount(
-                ethers.utils.formatEther(ethers.constants.MaxUint256)
-              )
-            }
-          >
+          <button type="button" onClick={() => setSsnAmount(ssnBalance)}>
             <h1 className="font-outfit font-bold text-sm text-accent">Max</h1>
           </button>
         </div>
