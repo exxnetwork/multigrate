@@ -1,16 +1,28 @@
 {
   "data": [
     {
-      "title": "What is the ExxFi?",
-      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum urna turpis, consectetur consequat metus ac, scelerisque blandit tortor. Nulla dignissim est interdum urna suscipit molestie. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tempus, purus id luctus blandit, ipsum neque pharetra purus, at placerat "
+      "title": "I have SSN in LBank / Hotbit / Digifinex , what do I do to migrate?",
+      "content": "You need to withdraw your tokens from exchanges in order to perform the migration. You can withdraw to a Metamask wallet or TrustWallet."
     },
     {
-      "title": "What is the difference between Hypersonic and Supersonic tokens?",
-      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum urna turpis, consectetur consequat metus ac, scelerisque blandit tortor. Nulla dignissim est interdum urna suscipit molestie. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tempus, purus id luctus blandit, ipsum neque pharetra purus, at placerat "
+      "title": "Can I migrate to EXXFI token Immediately instead of wrapping?",
+      "content": "The process of wrapping is to help us ease into the new launch. We plan to begin direct migration to EXXFI token once it is fully launched."
+    },
+    {
+      "title": "If I Wrap my SSN tokens, when do I get the EXXFI tokens?",
+      "content": "All WSSN tokens would be automatically converted to EXXFI tokens at the launch. We would initialize the airdrop and ensure complete deposit of the tokens."
+    },
+    {
+      "title": "Can I leave my tokens as SSN or HYPERSONIC?",
+      "content": "Yes, you can. However, we would stop supporting the two tokens as they we are migrating the balances, shifting the attention to EXXFI and moving the use cases and utility products to the rebranded ecosystem"
     },
     {
       "title": "What is the migration ratio?",
-      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum urna turpis, consectetur consequat metus ac, scelerisque blandit tortor. Nulla dignissim est interdum urna suscipit molestie. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tempus, purus id luctus blandit, ipsum neque pharetra purus, at placerat "
+      "content": "We have no ratio for migration. However, we have created a model which is sustainable and fair for the migrants. SSN to WSSN is 1:1 as we have employed the WSSN to ease our migration process. SSN to EXXFI relies on a fixed price move. We would decide what 1 SSN should be equal to in relation to EXXFI token, then that rate would be used to transfer all tokens till the migration is done. HYPERSONIC to EXXFI has a dynamic rate of migration. We did extra work on the rate of migration so as to make the exchange fairer and more accurate considering the amount spent to acquire the tokens"
+    },
+    {
+      "title": "Are we eventually going to migrate EXXFI?",
+      "content": "The reason we are doing the migration is because we seriously needed to rebrand and start afresh. We have had a lot of fundamental mismatches and imbalances with the metrics and allocations in such a way that it would not be beneficial for an ecosystem trying to accelerate global defi adoption. Hence, we needed to restart and this time, as one, more solid and laser focused on goals."
     }
   ]
 }
