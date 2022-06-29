@@ -92,7 +92,7 @@ function StatusIcon({ connector }: { connector: Connector }) {
   }
 }
 
-function Web3StatusInner({ title, className, invert }) {
+function Web3StatusInner({ title, className, invert, toggleDisconnectModal }) {
   const { library, accounts, account, connector, chainId } =
     useActiveWeb3React();
   const balances = useBalances(library, accounts);
@@ -100,20 +100,18 @@ function Web3StatusInner({ title, className, invert }) {
 
   if (account) {
     return (
-      <div className="flex gap-x-3 items-center">
+      <div className="hidden lg:flex gap-x-3 items-center">
         {account && chainId && balances && (
           <>
-            <div
-              className={`font-outfit font-bold text-sm pr-3 italic text-white`}
-            >
-              {balances?.[0] ? ` ${formatBalance(balances[0], 18, 4)}` : null}{" "}
+            <div className={`font-outfit font-bold text-sm pr-3 text-white`}>
+              {balances?.[0] ? ` ${formatBalance(balances[0], 18, 2)}` : null}{" "}
               BNB
             </div>
           </>
         )}
         <Button
-          onClick={toggleWalletModal}
-          className="hidden lg:flex justify-between items-center !min-w-[244px] px-3"
+          onClick={toggleDisconnectModal}
+          className="flex justify-between items-center !min-w-[244px] px-3"
         >
           <div className="w-full flex justify-between items-center">
             <p className="mr-2 font-outfit text-sm lg:text-lg text-dark text-opacity-40">
@@ -134,16 +132,23 @@ export default function Web3Status({
   title,
   className,
   invert,
+  toggleDisconnectModal,
 }: {
   title?: string;
   className?: string;
   invert?: boolean;
+  toggleDisconnectModal?: () => void;
 }) {
   // const isActive = useIsActive()
 
   return (
     <>
-      <Web3StatusInner title={title} className={className} invert={invert} />
+      <Web3StatusInner
+        title={title}
+        className={className}
+        invert={invert}
+        toggleDisconnectModal={toggleDisconnectModal}
+      />
       <WalletModal ENSName={undefined} />
     </>
   );
