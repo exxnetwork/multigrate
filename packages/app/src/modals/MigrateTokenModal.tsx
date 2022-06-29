@@ -64,6 +64,9 @@ const MigrateTokenModal = ({
     >
       <div className="flex justify-center items-center w-auto">
         <div className="w-full md:w-1/2 py-6 lg:pt-12 md:py-12 px-5 md:px-10 xl:w-[40%] bg-white dark:bg-dark4 rounded-2xl max-h-[85vh] xl:h-auto xl:max-h-[90vh] overflow-y-auto no-scrollbar">
+          <button onClick={toggleMigrateTokenModal} className="block ml-auto">
+            <Close className="text-white" />
+          </button>
           <div className="w-28 h-28 lg:w-40 lg:h-40 rounded-full bg-lightGreen dark:bg-dark3 mx-auto"></div>
           <h1 className="font-outfit font-semibold text-base lg:text-xl text-center text-dark dark:text-grey mt-3 lg:my-5">
             You are about to migrate
