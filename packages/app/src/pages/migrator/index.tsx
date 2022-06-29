@@ -45,7 +45,10 @@ const Migrator = () => {
           </div>
         </div>
 
-        <button className="bg-[#F8F8F8] rounded-full px-6 h-16 hidden lg:flex gap-x-3 items-center my-10 ml-auto">
+        <button
+          onClick={() => window.open("https://t.me/exxfi", "_blank")}
+          className="bg-[#F8F8F8] rounded-full px-6 h-16 hidden lg:flex gap-x-3 items-center my-10 ml-auto"
+        >
           <div className="w-8 lg:w-10 self-center">
             <Image
               src={TelegramImg}
