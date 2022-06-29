@@ -41,7 +41,7 @@ const WrappedSSN = ({
       const res = await ssnContract.balanceOf(account);
 
       setSSNBalance(
-        (Number(ethers.utils.formatEther(res)) * 10 ** 9).toFixed(2).toString()
+        Math.floor(Number(ethers.utils.formatEther(res)) * 10 ** 9).toString()
       );
     } catch (error) {
       console.error(error);
