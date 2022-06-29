@@ -7,6 +7,8 @@ import { ethers, Contract, BigNumber } from "ethers";
 import { useExxfiContract, useSSNToken } from "hooks/useContract";
 import { useSelector, RootStateOrAny } from "react-redux";
 import { useActiveWeb3React } from "hooks/useActiveWeb3React";
+import useBalances from "hooks/useBalance";
+import { formatBalance } from "functions/format";
 
 const SPENDER_ADDRESS = "0x6346F5B80a1C3A597C6752738e4a6F7dbB284C1B"; // spender address is the migrators contract address
 
@@ -20,6 +22,7 @@ const WrappedSSN = ({
   const ssnContract = useSSNToken();
   const { library, accounts, account, connector, chainId } =
     useActiveWeb3React();
+  const balances = useBalances(library, accounts);
 
   const [allowance, setAllowance] = useState(BigNumber.from(0));
 
@@ -73,7 +76,8 @@ const WrappedSSN = ({
           Enter SSN token Value
         </h1>
         <h1 className="font-outfit font-bold text-sm text-dark1 dark:text-grey text-opacity-50 dark:text-opacity-50">
-          Balance: 0.02
+          Balance: &nbsp;
+          {balances?.[0] ? ` ${formatBalance(balances[0], 18, 4)}` : null}{" "}
         </h1>
       </div>
       <form onSubmit={approveMigrationHandler}>
@@ -97,12 +101,18 @@ const WrappedSSN = ({
               className="flex-1 bg-transparent pl-3 pr-6 h-full font-outfit text-sm text-dark1 dark:text-grey"
             />
           </div>
-          <button className="">
+          <button
+            onClick={() =>
+              setSsnAmount(
+                ethers.utils.formatEther(ethers.constants.MaxUint256)
+              )
+            }
+          >
             <h1 className="font-outfit font-bold text-sm text-accent">Max</h1>
           </button>
         </div>
         <h1 className="font-outfit font-normal text-sm text-dark text-opacity-50 dark:text-opacity-50 dark:text-grey">
-          You get: &nbsp; <span className="font-bold">0.034WSSN</span>
+          You get: &nbsp; <span className="font-bold">{ssnAmount} WSSN</span>
         </h1>
 
         <Button className="mt-8 w-full">

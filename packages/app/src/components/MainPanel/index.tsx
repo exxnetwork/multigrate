@@ -10,6 +10,9 @@ import MobileMenuModal from "modals/MobileMenuModal";
 import ModeEclipse from "icons/ModeEclipse";
 import useDarkMode from "hooks/useDarkMode";
 import Web3Status from "components/Web3Status";
+import { useWalletModalToggle } from "state/application/hooks";
+import { shortenAddress } from "functions/format";
+import useActiveWeb3React from "hooks/useActiveWeb3React";
 interface MainPanelProps {
   pageTitle: string;
   subTitle: string;
@@ -90,6 +93,10 @@ const DisconnectButton = () => {
 };
 
 const ExtraMobileMenu = ({ toggleDarkMode, isDarkMode }) => {
+  const toggleWalletModal = useWalletModalToggle();
+  const { library, accounts, account, connector, chainId } =
+    useActiveWeb3React();
+
   return (
     <div className="py-5 bg-white dark:bg-dark2 fixed bottom-0 left-0 w-full flex lg:hidden items-center justify-between gap-x-7 px-5">
       <div
@@ -106,7 +113,11 @@ const ExtraMobileMenu = ({ toggleDarkMode, isDarkMode }) => {
           <ModeEclipse isDarkMode={isDarkMode} className="w-4 h-8" />
         </div>
       </div>
-      <Button className="flex justify-between flex-1 px-3">
+
+      <Button
+        onClick={toggleWalletModal}
+        className="flex justify-between flex-1 px-3"
+      >
         <>
           <div className="w-14">
             <Image
@@ -118,7 +129,7 @@ const ExtraMobileMenu = ({ toggleDarkMode, isDarkMode }) => {
             />
           </div>
           <h1 className="flex-1 font-outfit font-bold text-base text-white">
-            Connect Wallet
+            {account ? `${shortenAddress(account)}` : "Connect Wallet"}
           </h1>
         </>
       </Button>

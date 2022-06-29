@@ -8,7 +8,12 @@ import Image from "next/image";
 import Web3Connect from "../Web3Connect";
 import styled from "styled-components";
 import { useWalletModalToggle } from "../../state/application/hooks";
-import { Person } from "@mui/icons-material";
+import {
+  ArrowBackIos,
+  ArrowDropDown,
+  KeyboardArrowDown,
+  Person,
+} from "@mui/icons-material";
 import { formatBalance, shortenAddress } from "functions/format";
 import { MetaMask } from "@web3-react/metamask";
 import { Network } from "@web3-react/network";
@@ -95,29 +100,30 @@ function Web3StatusInner({ title, className, invert }) {
 
   if (account) {
     return (
-      <Button
-        onClick={toggleWalletModal}
-        className="hidden lg:flex justify-between !min-w-[244px] px-3"
-      >
-        <>
-          {account && chainId && balances && (
-            <>
-              <div
-                className={`font-outfit font-bold text-sm pr-3 italic text-white`}
-              >
-                {balances?.[0] ? ` ${formatBalance(balances[0], 18, 4)}` : null}{" "}
-                ETH
-              </div>
-            </>
-          )}
-
-          <div className="mr-2 font-outfit text-sm">
-            {shortenAddress(account)}
+      <div className="flex gap-x-3 items-center">
+        {account && chainId && balances && (
+          <>
+            <div
+              className={`font-outfit font-bold text-sm pr-3 italic text-white`}
+            >
+              {balances?.[0] ? ` ${formatBalance(balances[0], 18, 4)}` : null}{" "}
+              BNB
+            </div>
+          </>
+        )}
+        <Button
+          onClick={toggleWalletModal}
+          className="hidden lg:flex justify-between items-center !min-w-[244px] px-3"
+        >
+          <div className="w-full flex justify-between items-center">
+            <p className="mr-2 font-outfit text-sm lg:text-lg text-dark text-opacity-40">
+              {shortenAddress(account)}
+            </p>
+            <KeyboardArrowDown className="text-white" />
+            {/* {connector && <StatusIcon connector={connector} />} */}
           </div>
-
-          {connector && <StatusIcon connector={connector} />}
-        </>
-      </Button>
+        </Button>
+      </div>
     );
   } else {
     return <Web3Connect title={title} className={className} invert={invert} />;
