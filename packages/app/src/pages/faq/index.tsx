@@ -32,7 +32,7 @@ const Faq = () => {
             </h1>
 
             <p
-              className="font-outfit font-normal text-sm leading-7 text-dark1 dark:text-white py-4"
+              className="font-outfit font-normal text-sm leading-7 text-dark1 dark:text-white py-4 space-y-4"
               dangerouslySetInnerHTML={{ __html: activeFaq.content }}
             />
           </div>

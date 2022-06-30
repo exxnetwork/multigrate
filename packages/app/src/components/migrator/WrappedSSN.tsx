@@ -70,6 +70,9 @@ const WrappedSSN = ({
     try {
       if (allowance.lt(ethers.utils.parseUnits(ssnAmount, 9))) {
         const res = await ssnContract.approve(SPENDER_ADDRESS, max);
+
+        await res.wait();
+
         console.log("approve res", res);
 
         toggleMigrateTokenModal();
@@ -95,7 +98,7 @@ const WrappedSSN = ({
         </h1>
         <h1 className="font-outfit font-bold text-sm text-dark1 dark:text-grey text-opacity-50 dark:text-opacity-50">
           Balance: &nbsp;
-          {ssnBalance}
+          {ssnBalance ? ssnBalance : "0"} SSN
         </h1>
       </div>
       <form onSubmit={approveMigrationHandler}>
@@ -111,7 +114,7 @@ const WrappedSSN = ({
               />
             </div>
             <input
-              type="text"
+              type="number"
               placeholder="Enter Value"
               value={ssnAmount}
               onChange={(e) => setSsnAmount(e.target.value)}
