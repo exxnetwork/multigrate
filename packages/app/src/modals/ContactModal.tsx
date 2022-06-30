@@ -37,6 +37,7 @@ const ContactModal = ({ isOpen, toggleContactModal }: ContactModalProps) => {
         },
         "XU0AeTw9Rw4Av0UsX"
       );
+
       setLoading(false);
       toast.success("We will get back to you shortly");
       toggleContactModal();
