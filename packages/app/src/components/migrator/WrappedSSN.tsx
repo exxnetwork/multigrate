@@ -9,6 +9,7 @@ import { useSelector, RootStateOrAny } from "react-redux";
 import { useActiveWeb3React } from "hooks/useActiveWeb3React";
 import useBalances from "hooks/useBalance";
 import { formatBalance } from "functions/format";
+import { Oval } from "react-loader-spinner";
 
 const SPENDER_ADDRESS = "0x6346F5B80a1C3A597C6752738e4a6F7dbB284C1B"; // spender address is the migrators contract address
 
@@ -26,6 +27,7 @@ const WrappedSSN = ({
 
   const [allowance, setAllowance] = useState(BigNumber.from(0));
   const [ssnBalance, setSSNBalance] = useState("");
+  const [approving, setApproving] = useState(false);
 
   console.log("BALANCE", ssnBalance);
 
@@ -61,26 +63,29 @@ const WrappedSSN = ({
   };
 
   const approveMigrationHandler = async (e: any) => {
+    setApproving(true);
     e.preventDefault();
 
-    const max = ethers.constants.MaxUint256;
+    // const max = ethers.constants.MaxUint256;
 
     // console.log("VVVV", ethers.utils.formatUnits(allowance, 9));
 
     try {
       if (allowance.lt(ethers.utils.parseUnits(ssnAmount, 9))) {
-        const res = await ssnContract.approve(SPENDER_ADDRESS, max);
+        const res = await ssnContract.approve(SPENDER_ADDRESS, ssnBalance);
 
         await res.wait();
 
         console.log("approve res", res);
 
         toggleMigrateTokenModal();
+        setApproving(false);
       } else {
         toggleMigrateTokenModal();
       }
     } catch (error) {
       console.error("approve err", error);
+      setApproving(false);
     }
   };
 
@@ -130,10 +135,15 @@ const WrappedSSN = ({
           You get: &nbsp; <span className="font-bold">{ssnAmount} WSSN</span>
         </h1>
 
-        <Button className="mt-8 w-full">
-          <h1 className="font-outfit font-bold text-base text-white">
-            Continue
-          </h1>
+        <Button disabled={approving} className="mt-8 w-full">
+          <>
+            <h1 className="font-outfit font-bold text-base text-white mr-3">
+              Continue
+            </h1>
+            {approving && (
+              <Oval height="25" width="25" color="white" ariaLabel="loading" />
+            )}
+          </>
         </Button>
       </form>
     </div>

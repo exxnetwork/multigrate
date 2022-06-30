@@ -40,6 +40,8 @@ const MigrateTokenModal = ({
 
       const res = await contract?.exchange(ssnAmount);
 
+      await res.wait();
+
       console.log("migrate res", res);
 
       setMigrating(false);
