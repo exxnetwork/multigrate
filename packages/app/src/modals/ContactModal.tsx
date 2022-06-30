@@ -1,8 +1,12 @@
 import React, { useState, useRef } from "react";
+import { Close } from "@mui/icons-material";
+import { toast } from "react-toastify";
+import emailjs from "@emailjs/browser";
+import { Oval } from "react-loader-spinner";
+
 import Modal from "../components/Modal/MainModal";
 import Button from "components/Button";
 import SendIcon from "icons/SendIcon";
-import { Close } from "@mui/icons-material";
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -10,7 +14,39 @@ interface ContactModalProps {
 }
 
 const ContactModal = ({ isOpen, toggleContactModal }: ContactModalProps) => {
-  const handleSubmit = (e: any) => e.preventDefault();
+  const [loading, setLoading] = useState(false);
+
+  const [form, setForm] = useState({
+    senderEmail: "",
+    subject: "",
+    message: "",
+  });
+
+  const onSubmitHandler = async (e: any) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      await emailjs.send(
+        "service_3jytxgj",
+        "template_ophzner",
+        {
+          sender_email: form.senderEmail,
+          subject: form.subject,
+          message: form.message,
+        },
+        "XU0AeTw9Rw4Av0UsX"
+      );
+      setLoading(false);
+      toast.success("We will get back to you shortly");
+      toggleContactModal();
+    } catch (err) {
+      console.error("CHECKOUT_MAIL_ERR", err);
+      setLoading(false);
+
+      toast.error("something went wrong: Try Again!");
+    }
+  };
 
   return (
     <Modal
@@ -38,15 +74,19 @@ const ContactModal = ({ isOpen, toggleContactModal }: ContactModalProps) => {
             </button>
           </div>
 
-          <form onSubmit={handleSubmit} className="pt-8 space-y-6">
+          <form onSubmit={onSubmitHandler} className="pt-8 space-y-6">
             <div>
               <h1 className="font-outfit font-normal text-sm text-dark1 dark:text-accent1 text-opacity-50">
                 Your Email
               </h1>
 
               <input
-                type="text"
-                placeholder="you@email.com"
+                type="email"
+                placeholder="your@email.com"
+                value={form.senderEmail}
+                onChange={(e) =>
+                  setForm({ ...form, senderEmail: e.target.value })
+                }
                 className="w-full h-14 flex rounded-2xl bg-accent1 mt-3 px-4 lg:px-6 font-outfit text-sm dark:bg-dark3 text-dark1 dark:text-accent1"
               />
             </div>
@@ -63,25 +103,39 @@ const ContactModal = ({ isOpen, toggleContactModal }: ContactModalProps) => {
                   <input
                     type="text"
                     placeholder="Enter subject here"
+                    value={form.subject}
+                    onChange={(e) =>
+                      setForm({ ...form, subject: e.target.value })
+                    }
                     className="w-full h-full bg-transparent pl-3 font-outfit text-sm text-dark1 dark:text-accent1"
                   />
                 </div>
 
                 <textarea
                   placeholder="Type your message here"
+                  value={form.message}
+                  onChange={(e) =>
+                    setForm({ ...form, message: e.target.value })
+                  }
                   className="w-full h-44 bg-transparent mt-8 outline-none font-outfit text-sm text-dark1 dark:text-accent1"
                 />
 
-                <Button
-                  onClick={toggleContactModal}
-                  className="mt-7 ml-auto gap-x-2"
-                >
+                <Button className="mt-7 ml-auto gap-x-2">
                   <>
-                    {" "}
-                    <h1 className="font-outfit font-bold text-base text-white">
+                    <h1 className="font-outfit font-bold text-base text-white mr-2">
                       Send
                     </h1>
-                    <SendIcon />
+
+                    {loading ? (
+                      <Oval
+                        height="20"
+                        width="20"
+                        color="white"
+                        ariaLabel="loading"
+                      />
+                    ) : (
+                      <SendIcon />
+                    )}
                   </>
                 </Button>
               </div>
