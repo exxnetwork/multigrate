@@ -62,7 +62,7 @@ function App({
           <HooksProvider>
             <Guard>
               <Component {...pageProps} />
-              <ToastContainer />
+              <ToastContainer hideProgressBar={true} />
             </Guard>
           </HooksProvider>
         </PersistGate>

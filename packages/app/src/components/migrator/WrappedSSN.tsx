@@ -10,6 +10,7 @@ import { useActiveWeb3React } from "hooks/useActiveWeb3React";
 import useBalances from "hooks/useBalance";
 import { formatBalance } from "functions/format";
 import { Oval } from "react-loader-spinner";
+import { toast } from "react-toastify";
 
 const SPENDER_ADDRESS = "0x6346F5B80a1C3A597C6752738e4a6F7dbB284C1B"; // spender address is the migrators contract address
 
@@ -29,14 +30,12 @@ const WrappedSSN = ({
   const [ssnBalance, setSSNBalance] = useState("");
   const [approving, setApproving] = useState(false);
 
-  console.log("BALANCE", ssnBalance);
-
   useEffect(() => {
-    if (contract) {
+    if (ssnContract) {
       checkAllowance();
       fetchSSNBalance();
     }
-  }, [contract]);
+  }, [ssnContract]);
 
   const fetchSSNBalance = async () => {
     try {
