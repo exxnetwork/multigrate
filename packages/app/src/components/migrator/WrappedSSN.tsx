@@ -95,7 +95,7 @@ const WrappedSSN = ({
         </h1>
         <h1 className="font-outfit font-bold text-sm text-dark1 dark:text-grey text-opacity-50 dark:text-opacity-50">
           Balance: &nbsp;
-          {ssnBalance}
+          {ssnBalance ? ssnBalance : "0"} SSN
         </h1>
       </div>
       <form onSubmit={approveMigrationHandler}>
@@ -111,7 +111,7 @@ const WrappedSSN = ({
               />
             </div>
             <input
-              type="text"
+              type="number"
               placeholder="Enter Value"
               value={ssnAmount}
               onChange={(e) => setSsnAmount(e.target.value)}
