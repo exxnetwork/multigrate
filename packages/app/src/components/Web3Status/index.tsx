@@ -24,6 +24,7 @@ import useBalances from "hooks/useBalance";
 import useActiveWeb3React from "hooks/useActiveWeb3React";
 import dynamic from "next/dynamic";
 import Button from "components/Button";
+import useDarkMode from "hooks/useDarkMode";
 const WalletModal = dynamic(() => import("modals/WalletModal"), { ssr: false });
 
 function getName(connector: Connector) {
@@ -97,13 +98,18 @@ function Web3StatusInner({ title, className, invert, toggleDisconnectModal }) {
     useActiveWeb3React();
   const balances = useBalances(library, accounts);
   const toggleWalletModal = useWalletModalToggle();
+  const [isDarkMode] = useDarkMode();
 
   if (account) {
     return (
       <div className="hidden lg:flex gap-x-3 items-center">
         {account && chainId && balances && (
           <>
-            <div className={`font-outfit font-bold text-sm pr-3 text-white`}>
+            <div
+              className={`font-outfit font-bold text-sm pr-3 ${
+                isDarkMode ? "text-white" : "text-dark"
+              }`}
+            >
               {balances?.[0] ? ` ${formatBalance(balances[0], 18, 2)}` : null}{" "}
               BNB
             </div>
