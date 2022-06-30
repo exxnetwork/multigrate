@@ -75,7 +75,9 @@ const MainPanel = ({ pageTitle, subTitle, children }: MainPanelProps) => {
               title="Connect Wallet"
               toggleDisconnectModal={toggleDisconnectModal}
             />
-            {disconnect && account && <DisconnectButton />}
+            {disconnect && account && (
+              <DisconnectButton isDarkMode={isDarkMode} />
+            )}
           </div>
         </div>
         <main className="px-5 pb-40 lg:pb-0 lg:px-10 h-auto">{children}</main>
@@ -91,15 +93,21 @@ const MainPanel = ({ pageTitle, subTitle, children }: MainPanelProps) => {
 
 export default MainPanel;
 
-const DisconnectButton = () => {
+const DisconnectButton = ({ isDarkMode }) => {
   const { connector } = useActiveWeb3React();
   return (
     <div className="px-5 lg:w-fit absolute -top-10 lg:right-0 lg:top-20 z-50">
       <button
         onClick={() => connector.deactivate()}
-        className="bg-[#F8F8F8] rounded-lg px-10 h-14"
+        className={`${
+          isDarkMode ? "bg-[#F8F8F8]" : "bg-dark"
+        } rounded-lg px-10 h-14`}
       >
-        <h1 className="font-outfit font-medium text-base text-black">
+        <h1
+          className={`font-outfit font-medium text-base  ${
+            isDarkMode ? "text-black" : "text-white"
+          }`}
+        >
           Disconnect Wallet
         </h1>
       </button>
@@ -159,7 +167,7 @@ const ExtraMobileMenu = ({
           </>
         </Button>
       </div>
-      {disconnect && account && <DisconnectButton />}
+      {disconnect && account && <DisconnectButton isDarkMode={isDarkMode} />}
     </div>
   );
 };

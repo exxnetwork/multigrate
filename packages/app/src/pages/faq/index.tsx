@@ -31,9 +31,10 @@ const Faq = () => {
               {activeFaq.title}
             </h1>
 
-            <p className="font-outfit font-normal text-sm leading-7 text-dark1 dark:text-white py-4">
-              {activeFaq.content}
-            </p>
+            <p
+              className="font-outfit font-normal text-sm leading-7 text-dark1 dark:text-white py-4"
+              dangerouslySetInnerHTML={{ __html: activeFaq.content }}
+            />
           </div>
         </div>
 

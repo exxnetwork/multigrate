@@ -7,7 +7,7 @@ import ArrowCircleIcon from "icons/ArrowCircle";
 import { useExxfiContract } from "hooks/useContract";
 import { ethers, BigNumber } from "ethers";
 import useActiveWeb3React from "hooks/useActiveWeb3React";
-
+import { Oval } from "react-loader-spinner";
 
 interface MigrateTokenModalProps {
   isOpen: boolean;
@@ -26,14 +26,11 @@ const MigrateTokenModal = ({
 
   console.log("CONTRACT_", contract);
 
-
   // const AMOUNT = ethers.utils.parseUnits(ssnAmount, 18);
-
 
   const migrateTokenHandler = async () => {
     setMigrating(true);
     try {
-
       const gasLimit = await contract.estimateGas.exchange(ssnAmount);
 
       console.log("GAS_LIMIT", gasLimit);
@@ -41,7 +38,6 @@ const MigrateTokenModal = ({
       // const AMOUNT = ethers.utils.parseUnits(ssnAmount.toString(), 9);
 
       const res = await contract?.exchange(ssnAmount);
-
 
       console.log("migrate res", res);
 
@@ -86,11 +82,18 @@ const MigrateTokenModal = ({
             className="mt-7 gap-x-3 w-full"
           >
             <>
-              <h1 className="font-outfit font-normal text-sm lg:font-bold lg:text-base text-white">
+              <h1 className="font-outfit font-normal text-sm lg:font-bold lg:text-base text-white mr-3">
                 {migrating ? "Migrating..." : "Migrate"}
               </h1>
 
-              <RefreshIcon />
+              {migrating && (
+                <Oval
+                  height="25"
+                  width="25"
+                  color="white"
+                  ariaLabel="loading"
+                />
+              )}
             </>
           </Button>
         </div>
