@@ -62,8 +62,8 @@ export default class MyDocument extends Document {
           <meta name="theme-color" content="#ffffff" />
 
           <meta name="twitter:card" content="summary_large_image"></meta>
-          <meta name="twitter:site" content="@exxfi"></meta>
-          <meta name="twitter:creator" content="@exxfi"></meta>
+          <meta name="twitter:site" content="@exxfinance"></meta>
+          <meta name="twitter:creator" content="@exxfinance"></meta>
           <meta name="twitter:title" content="ExxFi Multigrate"></meta>
           <meta
             name="twitter:description"
