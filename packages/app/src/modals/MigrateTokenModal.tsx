@@ -8,6 +8,7 @@ import { useExxfiContract } from "hooks/useContract";
 import { ethers, BigNumber } from "ethers";
 import useActiveWeb3React from "hooks/useActiveWeb3React";
 import { Oval } from "react-loader-spinner";
+import { toast } from "react-toastify";
 
 interface MigrateTokenModalProps {
   isOpen: boolean;
@@ -42,9 +43,11 @@ const MigrateTokenModal = ({
       console.log("migrate res", res);
 
       setMigrating(false);
+      toast.success("Migration successful");
       toggleMigrateTokenModal();
     } catch (error) {
       console.error("migrate err", error);
+      toast.error("Something went wrong, Try Again!");
       setMigrating(false);
     }
   };

@@ -70,6 +70,9 @@ const WrappedSSN = ({
     try {
       if (allowance.lt(ethers.utils.parseUnits(ssnAmount, 9))) {
         const res = await ssnContract.approve(SPENDER_ADDRESS, max);
+
+        // await res.wait();
+
         console.log("approve res", res);
 
         toggleMigrateTokenModal();
