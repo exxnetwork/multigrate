@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 import Button from "components/Button";
 import MetaMaskImg from "/public/assets/images/metamask.svg";
@@ -13,6 +13,7 @@ import Web3Status from "components/Web3Status";
 import { useWalletModalToggle } from "state/application/hooks";
 import { shortenAddress } from "functions/format";
 import useActiveWeb3React from "hooks/useActiveWeb3React";
+import { toast } from "react-toastify";
 interface MainPanelProps {
   pageTitle: string;
   subTitle: string;
@@ -20,7 +21,8 @@ interface MainPanelProps {
 }
 
 const MainPanel = ({ pageTitle, subTitle, children }: MainPanelProps) => {
-  const { account } = useActiveWeb3React();
+  const toastId = useRef(null);
+  const { account, chainId } = useActiveWeb3React();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [disconnect, setDisconnect] = useState<boolean>(false);
   const [isDarkMode, toggleDarkMode] = useDarkMode();
@@ -29,6 +31,16 @@ const MainPanel = ({ pageTitle, subTitle, children }: MainPanelProps) => {
   const toggleMobileMenuModal = () => setIsOpen(!isOpen);
 
   console.log("CONFIRM+_", disconnect, account);
+  console.log("CHAINID", typeof chainId);
+
+  useEffect(() => {
+    !!chainId && chainId !== 56
+      ? (toastId.current = toast.warn("Wrong Network!! switch to BSC", {
+          autoClose: false,
+          position: "top-center",
+        }))
+      : toast.dismiss(toastId.current);
+  }, [chainId]);
 
   return (
     <>
