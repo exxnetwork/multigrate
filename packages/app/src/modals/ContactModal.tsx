@@ -78,7 +78,7 @@ const ContactModal = ({ isOpen, toggleContactModal }: ContactModalProps) => {
           <form onSubmit={onSubmitHandler} className="pt-8 space-y-6">
             <div>
               <h1 className="font-outfit font-normal text-sm text-dark1 dark:text-accent1 text-opacity-50">
-                Your Email
+                Your Email <span className="text-red">*</span>
               </h1>
 
               <input
@@ -93,7 +93,7 @@ const ContactModal = ({ isOpen, toggleContactModal }: ContactModalProps) => {
             </div>
             <div>
               <h1 className="font-outfit font-normal text-sm text-dark1 dark:text-accent1 text-opacity-50">
-                Your Message
+                Your Message <span className="text-red">*</span>
               </h1>
 
               <div className="w-full mt-3 pt-7 pb-6 px-4 lg:px-6 rounded-2xl bg-accent1 dark:bg-dark3">
@@ -121,7 +121,15 @@ const ContactModal = ({ isOpen, toggleContactModal }: ContactModalProps) => {
                   className="w-full h-44 bg-transparent mt-8 outline-none font-outfit text-sm text-dark1 dark:text-accent1"
                 />
 
-                <Button className="mt-7 ml-auto gap-x-2">
+                <Button
+                  disabled={
+                    loading ||
+                    !form.senderEmail ||
+                    !form.message ||
+                    !form.subject
+                  }
+                  className="mt-7 ml-auto gap-x-2"
+                >
                   <>
                     <h1 className="font-outfit font-bold text-base text-white mr-2">
                       Send
