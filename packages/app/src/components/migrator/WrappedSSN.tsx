@@ -66,21 +66,21 @@ const WrappedSSN = ({
     setApproving(true);
     e.preventDefault();
 
-    // const max = ethers.constants.MaxUint256;
+    const max = ethers.constants.MaxUint256;
 
     // console.log("VVVV", ethers.utils.formatUnits(allowance, 9));
 
     try {
       if (allowance.lt(ethers.utils.parseUnits(ssnAmount, 9))) {
-        const res = await ssnContract.approve(SPENDER_ADDRESS, ssnBalance);
+        const res = await ssnContract.approve(SPENDER_ADDRESS, max);
 
         await res.wait();
-
         console.log("approve res", res);
 
-        toggleMigrateTokenModal();
         setApproving(false);
+        toggleMigrateTokenModal();
       } else {
+        setApproving(false);
         toggleMigrateTokenModal();
       }
     } catch (error) {
