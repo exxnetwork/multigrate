@@ -34,7 +34,7 @@ const ExxFiMigration = ({ isActive, toggleMigrateTokenModal }) => {
           Enter SSN token Value
         </h1>
         <h1 className="font-outfit font-bold text-sm text-dark1 text-opacity-50 dark:text-opacity-50 dark:text-grey">
-          Balance: 0.02
+          Balance: 0
         </h1>
       </div>
       <div className="h-14 flex rounded-2xl bg-accent1 dark:bg-dark3 my-4 pr-3 lg:pr-6">
@@ -59,14 +59,17 @@ const ExxFiMigration = ({ isActive, toggleMigrateTokenModal }) => {
         </button>
       </div>
       <h1 className="font-outfit font-normal text-sm text-dark text-opacity-50 dark:text-opacity-50 dark:text-grey">
-        You get: &nbsp; <span className="font-bold">0.034WSSN</span>
+        You get: &nbsp; <span className="font-bold">0 WSSN</span>
       </h1>
 
       <Button
         onClick={toggleMigrateTokenModal}
+        disabled={true}
         className="mt-8 lg:mt-12 w-full"
       >
-        <h1 className="font-outfit font-bold text-base text-white">Continue</h1>
+        <h1 className="font-outfit font-bold text-base text-white">
+          Coming Soon
+        </h1>
       </Button>
     </div>
   );
