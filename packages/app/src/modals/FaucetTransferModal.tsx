@@ -81,7 +81,7 @@ const SuccessModal = ({ toggleFaucetTransferModal, toggleIsSuccessful }) => {
         <h1 className="font-work_sans font-semibold text-base text-dark">
           Request Submited
         </h1>
-        <p className="font-work_sans font-light text-base text-dark pt-4 px-6">
+        <p className="font-work_sans font-light text-base text-dark pt-2 lg:pt-4 lg:px-6">
           The transfer is on the way. Tokens will be transferred to you within
           minutes.
         </p>
@@ -107,24 +107,24 @@ const ConfirmModal = ({
   return (
     <>
       <div className="flex justify-between items-center text-dark">
-        <h1 className="font-work_sans font-medium text-dark1 text-opacity-60 text-lg">
+        <h1 className="font-work_sans font-medium text-dark1 text-opacity-60 text-base lg:text-lg">
           Confirm the following details
         </h1>
         <button onClick={toggleFaucetTransferModal} className="block ml-auto">
           <Close className="text-dark" />
         </button>
       </div>
-      <div className="my-8 border border-[#DBD8FC] rounded p-5 space-y-6">
+      <div className="my-8 border border-[#DBD8FC] rounded p-4 lg:p-5 space-y-6">
         <List title="Token:" value="EFT" />
         <List title="Amount:" value="0.2" />
         <List title="Network:" value="BSC Testnet" />
       </div>
       <div>
-        <h1 className="font-work_sans font-medium text-lg text-dark1 text-opacity-50">
+        <h1 className="font-work_sans font-medium text-base lg:text-lg text-dark1 text-opacity-50">
           Transfer to:
         </h1>
 
-        <h1 className="font-work_sans font-semibold text-lg text-dark1 pt-3">
+        <h1 className="font-work_sans font-semibold text-base lg:text-lg text-dark1 pt-3">
           0x7ae2f5b9e386cd1b50a
         </h1>
       </div>
@@ -150,11 +150,13 @@ const ConfirmModal = ({
 const List = ({ title, value }) => {
   return (
     <div className="flex justify-between items-center">
-      <h1 className="font-work_sans font-medium text-lg text-dark1 text-opacity-50">
+      <h1 className="font-work_sans font-medium text-base lg:text-lg text-dark1 text-opacity-50">
         {title}
       </h1>
 
-      <h1 className="font-work_sans font-medium text-lg text-dark1">{value}</h1>
+      <h1 className="font-work_sans font-medium text-sm lg:text-lg text-dark1">
+        {value}
+      </h1>
     </div>
   );
 };
