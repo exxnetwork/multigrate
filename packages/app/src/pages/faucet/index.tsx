@@ -27,20 +27,20 @@ const Faucet = () => {
             <h1 className="font-bold font-work_sans text-lg text-dark text-opacity-50">
               Get Test Tokens
             </h1>
-            <h1 className="font-normal font-work_sans text-sm text-dark1 text-opacity-50 pt-3 w-[35%]">
+            <h1 className="font-normal font-work_sans text-sm text-dark1 text-opacity-50 pt-2 lg:pt-3 lg:w-[35%]">
               This faucet transfers TestToken on Matic testnets and parent
               chain. Confirm details before submitting.
             </h1>
           </div>
-          <div className="flex gap-x-20">
-            <div className="w-1/2 bg-grey dark:bg-dark1 dark:bg-opacity-40 rounded border border-[#DBD8FC] overflow-hidden">
+          <div className="lg:flex gap-x-20 space-y-10 lg:space-y-0">
+            <div className="lg:w-1/2 bg-grey dark:bg-dark1 dark:bg-opacity-40 rounded border border-[#DBD8FC] overflow-hidden">
               <div className="bg-grey dark:bg-dark1 flex h-16 border-b border-[#DBD8FC]">
                 <TabButton title="EFT" {...{ setActiveTab, activeTab }} />
                 <div className="border-r border-[#DBD8FC]"></div>
                 <TabButton title="EXX" {...{ setActiveTab, activeTab }} />
               </div>
 
-              <div className="pt-7 px-5 overflow-hidden">
+              <div className="pt-7 px-4 lg:px-5 overflow-hidden">
                 <EFT
                   isActive={activeTab === "EFT"}
                   toggleFaucetTransferModal={toggleFaucetTransferModal}
@@ -53,7 +53,7 @@ const Faucet = () => {
                 />
               </div>
             </div>
-            <div className="w-1/2">
+            <div className="lg:w-1/2">
               <h1 className="font-work_sans font-semibold text-base text-dark1 text-opacity-50 pb-4">
                 Test Balances
               </h1>
