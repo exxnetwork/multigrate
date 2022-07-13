@@ -50,12 +50,12 @@ const Sidebar = () => {
 
         <div className="pt-14 space-y-4">
           <NavLink label="Migrator" href="/migrator" icon={<MigratorIcon />} />
+          <NavLink label="Faucet" href="/faucet" icon={<FaucetIcon />} />
           <NavLink
             label="Token Bridge"
             href="/token_bridge"
             icon={<HelpIcon />}
           />
-          <NavLink label="Faucet" href="/faucet" icon={<FaucetIcon />} />
           <NavLink label="FAQ" href="/faq" icon={<FaqIcon />} />
           <NavLink
             label="Help"

@@ -21,7 +21,7 @@ const EFT = ({ isActive, toggleFaucetTransferModal }) => {
           <input
             type="text"
             placeholder="Enter Value"
-            className="flex-1 bg-transparent px-6 h-full font-outfit text-sm text-dark1 dark:text-grey"
+            className="flex-1 bg-transparent px-3 lg:px-6 h-full font-outfit text-sm text-dark1 dark:text-grey"
           />
 
           <button className="">
@@ -39,7 +39,7 @@ const EFT = ({ isActive, toggleFaucetTransferModal }) => {
           <input
             type="text"
             placeholder="Enter Value"
-            className="flex-1 bg-transparent px-6 h-full font-outfit text-sm text-dark1 dark:text-grey"
+            className="flex-1 bg-transparent px-3 lg:px-6 h-full font-outfit text-sm text-dark1 dark:text-grey"
           />
         </div>
       </div>

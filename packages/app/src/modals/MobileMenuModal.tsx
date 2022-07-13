@@ -9,6 +9,7 @@ import MigratorIcon from "icons/MigratorIcon";
 import HelpIcon from "icons/HelpIcon";
 import FaqIcon from "icons/FaqIcon";
 import ContactModal from "./ContactModal";
+import FaucetIcon from "icons/FaucetIcon";
 
 interface MobileMenuModalProps {
   isOpen: boolean;
@@ -50,6 +51,11 @@ const MobileMenuModal = ({
                 label="Migrator"
                 href="/migrator"
                 icon={<MigratorIcon />}
+              />
+              <MobileNavLink
+                label="Faucet"
+                href="/faucet"
+                icon={<FaucetIcon />}
               />
               <MobileNavLink
                 label="Token Bridge"
