@@ -13,6 +13,7 @@ import React, { useState } from "react";
 import LightModeLogo from "/public/assets/images/logo.svg";
 import DarkModeLogo from "/public/assets/images/dark-mode-logo.svg";
 import useDarkMode from "hooks/useDarkMode";
+import FaucetIcon from "icons/FaucetIcon";
 
 const Sidebar = () => {
   const [isDarkMode, toggleDarkMode] = useDarkMode();
@@ -54,6 +55,7 @@ const Sidebar = () => {
             href="/token_bridge"
             icon={<HelpIcon />}
           />
+          <NavLink label="Faucet" href="/faucet" icon={<FaucetIcon />} />
           <NavLink label="FAQ" href="/faq" icon={<FaqIcon />} />
           <NavLink
             label="Help"
