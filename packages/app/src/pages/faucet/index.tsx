@@ -103,7 +103,7 @@ const TabButton = ({ title, setActiveTab, activeTab }: TabButtonProps) => {
     <button
       onClick={() => setActiveTab(title)}
       className={`w-1/2 h-full ${
-        isActive ? " bg-[#DBD8FC60] dark:bg-[#1E322E]" : "bg-transparent"
+        isActive ? " bg-[#DBD8FC90] dark:bg-[#1E322E]" : "bg-transparent"
       } flex justify-center items-center transition-all ease-linear delay-75`}
     >
       <h1
