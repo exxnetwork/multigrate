@@ -21,6 +21,7 @@ const EXX = ({ isActive, toggleFaucetTransferModal }) => {
           <input
             type="text"
             placeholder="Enter Value"
+            readOnly
             className="flex-1 bg-transparent px-3 lg:px-6 h-full font-outfit text-sm text-dark1 dark:text-grey"
           />
         </div>
