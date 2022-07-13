@@ -21,14 +21,9 @@ const EFT = ({ isActive, toggleFaucetTransferModal }) => {
           <input
             type="text"
             placeholder="Enter Value"
+            readOnly
             className="flex-1 bg-transparent px-3 lg:px-6 h-full font-outfit text-sm text-dark1 dark:text-grey"
           />
-
-          <button className="">
-            <h1 className="font-work_sans font-semibold text-sm text-accent">
-              Add EXX Network
-            </h1>
-          </button>
         </div>
       </div>
       <div>
@@ -53,8 +48,8 @@ const EFT = ({ isActive, toggleFaucetTransferModal }) => {
           Submit
         </h1>
       </Button>
-      <button className="flex gap-x-4 justify-center items-center w-full h-14 rounded border border-[#DBD8FC50]">
-        <div className="w-14">
+      <button className="flex gap-x-4 justify-center items-center w-full h-12 lg:h-14 rounded border border-[#DBD8FC50]">
+        <div className="w-8 lg:w-14">
           <Image
             src={MetaMaskImg.src}
             alt="metamask"
@@ -63,7 +58,7 @@ const EFT = ({ isActive, toggleFaucetTransferModal }) => {
             layout="responsive"
           />
         </div>
-        <h1 className="font-work_sans font-semibold text-base text-dark">
+        <h1 className="font-work_sans font-semibold text-sm lg:text-base text-dark">
           Add Exx Network
         </h1>
       </button>

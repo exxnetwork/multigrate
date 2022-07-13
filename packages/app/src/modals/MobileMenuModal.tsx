@@ -56,6 +56,7 @@ const MobileMenuModal = ({
                 label="Faucet"
                 href="/faucet"
                 icon={<FaucetIcon />}
+                className="py-2"
               />
               <MobileNavLink
                 label="Token Bridge"
