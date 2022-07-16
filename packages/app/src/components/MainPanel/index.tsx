@@ -14,13 +14,24 @@ import { useWalletModalToggle } from "state/application/hooks";
 import { shortenAddress } from "functions/format";
 import useActiveWeb3React from "hooks/useActiveWeb3React";
 import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 interface MainPanelProps {
   pageTitle: string;
   subTitle: string;
+  isEXX?: boolean;
   children: JSX.Element;
 }
 
-const MainPanel = ({ pageTitle, subTitle, children }: MainPanelProps) => {
+const MainPanel = ({
+  pageTitle,
+  subTitle,
+  isEXX = false,
+  children,
+}: MainPanelProps) => {
+  const { asPath, push } = useRouter();
+
+  const isFaucetRoute = asPath.startsWith("/faucet");
+
   const toastId = useRef(null);
   const { account, chainId } = useActiveWeb3React();
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -82,20 +93,43 @@ const MainPanel = ({ pageTitle, subTitle, children }: MainPanelProps) => {
               {subTitle}
             </h1>
           </div>
-          <div className="relative">
-            <Web3Status
-              title="Connect Wallet"
-              toggleDisconnectModal={toggleDisconnectModal}
-            />
-            {disconnect && account && (
-              <DisconnectButton isDarkMode={isDarkMode} />
-            )}
-          </div>
+          {!isEXX && !isFaucetRoute ? (
+            <div className="relative">
+              <Web3Status
+                title="Connect Wallet"
+                toggleDisconnectModal={toggleDisconnectModal}
+              />
+              {disconnect && account && (
+                <DisconnectButton isDarkMode={isDarkMode} />
+              )}
+            </div>
+          ) : isEXX && isFaucetRoute ? (
+            <button className="hidden lg:flex gap-x-2 justify-center items-center w-fit h-12 lg:h-14 px-4 rounded-2xl border border-[#DBD8FC]">
+              <div className="w-8 lg:w-10">
+                <Image
+                  src={MetaMaskImg.src}
+                  alt="metamask"
+                  width={MetaMaskImg.width}
+                  height={MetaMaskImg.height}
+                  layout="responsive"
+                />
+              </div>
+              <h1 className="font-work_sans font-medium text-sm text-dark dark:text-grey">
+                Add Exx Network
+              </h1>
+            </button>
+          ) : null}
         </div>
         <main className="px-5 pb-40 lg:pb-0 lg:px-10 h-auto">{children}</main>
 
         <ExtraMobileMenu
-          {...{ toggleDarkMode, isDarkMode, disconnect, toggleDisconnectModal }}
+          {...{
+            toggleDarkMode,
+            isDarkMode,
+            disconnect,
+            toggleDisconnectModal,
+            isEXX,
+          }}
         />
       </div>
       <MobileMenuModal {...{ isOpen, toggleMobileMenuModal }} />
@@ -132,7 +166,11 @@ const ExtraMobileMenu = ({
   isDarkMode,
   disconnect,
   toggleDisconnectModal,
+  isEXX = false,
 }) => {
+  const { asPath, push } = useRouter();
+
+  const isFaucetRoute = asPath.startsWith("/faucet");
   const toggleWalletModal = useWalletModalToggle();
   const { library, accounts, account, connector, chainId } =
     useActiveWeb3React();
@@ -157,27 +195,51 @@ const ExtraMobileMenu = ({
           </div>
         </div>
 
-        <Button
-          onClick={() => {
-            account ? toggleDisconnectModal() : toggleWalletModal();
-          }}
-          className="flex justify-between flex-1 px-3"
-        >
-          <>
-            <div className="w-14">
-              <Image
-                src={MetaMaskImg.src}
-                alt="metamask"
-                width={MetaMaskImg.width}
-                height={MetaMaskImg.height}
-                layout="responsive"
-              />
-            </div>
-            <h1 className="flex-1 font-outfit font-bold text-base text-white">
-              {account ? `${shortenAddress(account)}` : "Connect Wallet"}
-            </h1>
-          </>
-        </Button>
+        {!isEXX && !isFaucetRoute ? (
+          <Button
+            onClick={() => {
+              account ? toggleDisconnectModal() : toggleWalletModal();
+            }}
+            className="flex justify-between flex-1 px-3"
+          >
+            <>
+              <div className="w-14">
+                <Image
+                  src={MetaMaskImg.src}
+                  alt="metamask"
+                  width={MetaMaskImg.width}
+                  height={MetaMaskImg.height}
+                  layout="responsive"
+                />
+              </div>
+              <h1 className="flex-1 font-outfit font-bold text-base text-white">
+                {account ? `${shortenAddress(account)}` : "Connect Wallet"}
+              </h1>
+            </>
+          </Button>
+        ) : isEXX && isFaucetRoute ? (
+          <Button
+            onClick={() => {
+              account ? toggleDisconnectModal() : toggleWalletModal();
+            }}
+            className="flex justify-between flex-1 px-3"
+          >
+            <>
+              <div className="w-14">
+                <Image
+                  src={MetaMaskImg.src}
+                  alt="metamask"
+                  width={MetaMaskImg.width}
+                  height={MetaMaskImg.height}
+                  layout="responsive"
+                />
+              </div>
+              <h1 className="flex-1 font-outfit font-bold text-base text-white">
+                {account ? `${shortenAddress(account)}` : "Add Exx Network"}
+              </h1>
+            </>
+          </Button>
+        ) : null}
       </div>
       {disconnect && account && <DisconnectButton isDarkMode={isDarkMode} />}
     </div>
