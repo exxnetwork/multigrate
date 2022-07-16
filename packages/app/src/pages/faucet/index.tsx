@@ -20,6 +20,7 @@ const Faucet = () => {
     <DashboardLayout
       pageTitle="Faucet"
       subTitle="Exxfi ecosystem testnet tokens"
+      isEXX={activeTab === "EXX"}
     >
       <>
         <div className="lg:py-12 w-full">
@@ -107,7 +108,7 @@ const TabButton = ({ title, setActiveTab, activeTab }: TabButtonProps) => {
       } flex justify-center items-center transition-all ease-linear delay-75`}
     >
       <h1
-        className={`font-work_sans font-semibold text-sm text-dark ${
+        className={`font-work_sans font-semibold text-sm text-dark1 ${
           isActive
             ? "text-opacity-100 dark:text-grey dark:text-opacity-100"
             : "text-opacity-70 dark:text-white dark:text-opacity-100"

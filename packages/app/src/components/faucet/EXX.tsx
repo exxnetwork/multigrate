@@ -17,12 +17,13 @@ const EXX = ({ isActive, toggleFaucetTransferModal }) => {
         <h1 className="font-work_sans font-normal text-sm text-dark1 text-opacity-50 dark:text-opacity-50 dark:text-grey">
           Network
         </h1>
-        <div className="h-14 flex rounded bg-white dark:bg-dark3  border border-[#DBD8FC] mt-2 pr-3 lg:pr-6">
+        <div className="h-14 flex rounded bg-white dark:bg-dark3 border border-[#DBD8FC] overflow-hidden mt-2">
           <input
             type="text"
             placeholder="Enter Value"
             readOnly
-            className="flex-1 bg-transparent px-3 lg:px-6 h-full font-outfit text-sm text-dark1 dark:text-grey"
+            value="BSC Testnet"
+            className="flex-1 bg-accent1 px-3 lg:px-6 h-full font-outfit text-sm text-dark1 dark:text-grey"
           />
         </div>
       </div>
