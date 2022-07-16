@@ -58,7 +58,7 @@ const EFT = ({ isActive, toggleFaucetTransferModal }) => {
             layout="responsive"
           />
         </div>
-        <h1 className="font-work_sans font-semibold text-sm lg:text-base text-dark">
+        <h1 className="font-work_sans font-semibold text-sm lg:text-base text-dark dark:text-grey">
           Add Exx Network
         </h1>
       </button>

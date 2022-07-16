@@ -24,16 +24,16 @@ const Faucet = () => {
       <>
         <div className="lg:py-12 w-full">
           <div className="pb-10">
-            <h1 className="font-bold font-work_sans text-lg text-dark text-opacity-50">
+            <h1 className="font-bold font-work_sans text-lg text-dark dark:text-grey text-opacity-50">
               Get Test Tokens
             </h1>
-            <h1 className="font-normal font-work_sans text-sm text-dark1 text-opacity-50 pt-2 lg:pt-3 lg:w-[35%]">
+            <h1 className="font-normal font-work_sans text-sm text-dark1 dark:text-grey text-opacity-50 pt-2 lg:pt-3 lg:w-[35%]">
               This faucet transfers TestToken on Matic testnets and parent
               chain. Confirm details before submitting.
             </h1>
           </div>
           <div className="lg:flex gap-x-20 space-y-10 lg:space-y-0">
-            <div className="lg:w-1/2 bg-grey dark:bg-dark1 dark:bg-opacity-40 rounded border border-[#DBD8FC] overflow-hidden">
+            <div className="lg:w-1/2 bg-grey dark:bg-dark2 dark:bg-opacity-40 rounded border border-[#DBD8FC] overflow-hidden">
               <div className="bg-grey dark:bg-dark1 flex h-16 border-b border-[#DBD8FC]">
                 <TabButton title="EFT" {...{ setActiveTab, activeTab }} />
                 <div className="border-r border-[#DBD8FC]"></div>
@@ -54,7 +54,7 @@ const Faucet = () => {
               </div>
             </div>
             <div className="lg:w-1/2">
-              <h1 className="font-work_sans font-semibold text-base text-dark1 text-opacity-50 pb-4">
+              <h1 className="font-work_sans font-semibold text-base text-dark1 dark:text-grey text-opacity-50 pb-4">
                 Test Balances
               </h1>
               <TestBalanceTable />
@@ -103,7 +103,7 @@ const TabButton = ({ title, setActiveTab, activeTab }: TabButtonProps) => {
     <button
       onClick={() => setActiveTab(title)}
       className={`w-1/2 h-full ${
-        isActive ? " bg-[#DBD8FC90] dark:bg-[#1E322E]" : "bg-transparent"
+        isActive ? " bg-[#DBD8FC90] " : "bg-transparent dark:bg-dark3"
       } flex justify-center items-center transition-all ease-linear delay-75`}
     >
       <h1
