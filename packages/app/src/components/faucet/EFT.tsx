@@ -17,12 +17,13 @@ const EFT = ({ isActive, toggleFaucetTransferModal }) => {
         <h1 className="font-work_sans font-normal text-sm text-dark1 text-opacity-50 dark:text-opacity-50 dark:text-grey">
           Network
         </h1>
-        <div className="h-14 flex rounded bg-white dark:bg-dark3  border border-[#DBD8FC] mt-2 pr-3 lg:pr-6">
+        <div className="h-14 flex rounded bg-white dark:bg-dark3 border border-[#DBD8FC] overflow-hidden mt-2">
           <input
             type="text"
             placeholder="Enter Value"
             readOnly
-            className="flex-1 bg-transparent px-3 lg:px-6 h-full font-outfit text-sm text-dark1 dark:text-grey"
+            value="BSC Testnet"
+            className="flex-1 bg-accent1 px-3 lg:px-6 h-full font-outfit text-sm text-dark1 dark:text-grey"
           />
         </div>
       </div>
@@ -48,20 +49,6 @@ const EFT = ({ isActive, toggleFaucetTransferModal }) => {
           Submit
         </h1>
       </Button>
-      <button className="flex gap-x-4 justify-center items-center w-full h-12 lg:h-14 rounded border border-[#DBD8FC50]">
-        <div className="w-8 lg:w-14">
-          <Image
-            src={MetaMaskImg.src}
-            alt="metamask"
-            width={MetaMaskImg.width}
-            height={MetaMaskImg.height}
-            layout="responsive"
-          />
-        </div>
-        <h1 className="font-work_sans font-semibold text-sm lg:text-base text-dark dark:text-grey">
-          Add Exx Network
-        </h1>
-      </button>
     </div>
   );
 };
