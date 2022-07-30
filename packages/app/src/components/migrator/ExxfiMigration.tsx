@@ -15,18 +15,16 @@ const ExxFiMigration = ({ isActive, toggleMigrateTokenModal }) => {
           : "fade-out max-h-0 pointer-events-none"
       }`}
     >
-      <div className="">
-        <h1 className="font-outfit font-normal text-sm text-dark1 text-opacity-50 dark:text-opacity-50 dark:text-grey">
-          Select token to migrate from...
-        </h1>
-        <div className="flex items-center gap-x-7 lg:gap-x-10 pt-5">
-          <RadioButton title="SSN" {...{ selectedToken, setSelectedToken }} />
-          <RadioButton title="WSSN" {...{ selectedToken, setSelectedToken }} />
-          <RadioButton
-            title="Hypersonic"
-            {...{ selectedToken, setSelectedToken }}
-          />
-        </div>
+      <h1 className="font-outfit font-normal text-sm text-dark1 text-opacity-50 dark:text-opacity-50 dark:text-grey leading-none">
+        Select token to migrate from...
+      </h1>
+      <div className="flex items-center gap-x-7 lg:gap-x-10 pt-5">
+        <RadioButton title="SSN" {...{ selectedToken, setSelectedToken }} />
+        <RadioButton title="WSSN" {...{ selectedToken, setSelectedToken }} />
+        <RadioButton
+          title="Hypersonic"
+          {...{ selectedToken, setSelectedToken }}
+        />
       </div>
 
       <div className="flex justify-between items-center pt-10">
@@ -37,6 +35,7 @@ const ExxFiMigration = ({ isActive, toggleMigrateTokenModal }) => {
           Balance: 0
         </h1>
       </div>
+
       <div className="h-14 flex rounded-2xl bg-accent1 dark:bg-dark3 my-4 pr-3 lg:pr-6">
         <div className="flex-1 flex pl-3">
           <div className="w-6 lg:w-9 self-center">
