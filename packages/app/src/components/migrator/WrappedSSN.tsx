@@ -90,7 +90,7 @@ const WrappedSSN = ({
 
   return (
     <div
-      className={`pb-3 transition-all ease-in-out ${
+      className={`transition-all ease-in-out ${
         isActive
           ? "fade-in max-h-max pointer-events-auto"
           : "fade-out max-h-0 pointer-events-none"

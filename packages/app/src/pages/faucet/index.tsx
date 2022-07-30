@@ -33,15 +33,14 @@ const Faucet = () => {
               chain. Confirm details before submitting.
             </h1>
           </div>
-          <div className="lg:flex gap-x-20 space-y-10 lg:space-y-0">
-            <div className="lg:w-1/2 bg-grey dark:bg-dark2 dark:bg-opacity-40 rounded border border-[#DBD8FC] overflow-hidden">
-              <div className="bg-grey dark:bg-dark1 flex h-16 border-b border-[#DBD8FC]">
+          <div className="lg:flex gap-x-14 space-y-10 lg:space-y-0">
+            <div className="lg:w-1/2 bg-grey dark:bg-dark2 dark:bg-opacity-40 rounded border border-[#DBD8FC] overflow-hidden py-4 px-4">
+              <div className="bg-lightGreen dark:bg-dark3 flex shadow-migrator h-16 p-2 rounded-2xl">
                 <TabButton title="EFT" {...{ setActiveTab, activeTab }} />
-                <div className="border-r border-[#DBD8FC]"></div>
                 <TabButton title="EXX" {...{ setActiveTab, activeTab }} />
               </div>
 
-              <div className="pt-7 px-4 lg:px-5 overflow-hidden">
+              <div className="pt-7 overflow-hidden">
                 <EFT
                   isActive={activeTab === "EFT"}
                   toggleFaucetTransferModal={toggleFaucetTransferModal}
@@ -104,11 +103,11 @@ const TabButton = ({ title, setActiveTab, activeTab }: TabButtonProps) => {
     <button
       onClick={() => setActiveTab(title)}
       className={`w-1/2 h-full ${
-        isActive ? " bg-[#DBD8FC90] " : "bg-transparent dark:bg-dark3"
-      } flex justify-center items-center transition-all ease-linear delay-75`}
+        isActive ? " bg-white dark:bg-[#1E322E]" : "bg-transparent"
+      } rounded-2xl flex justify-center items-center transition-all ease-linear delay-75`}
     >
       <h1
-        className={`font-work_sans font-semibold text-sm text-dark1 ${
+        className={`font-work_sans font-semibold text-sm text-dark ${
           isActive
             ? "text-opacity-100 dark:text-grey dark:text-opacity-100"
             : "text-opacity-70 dark:text-white dark:text-opacity-100"
