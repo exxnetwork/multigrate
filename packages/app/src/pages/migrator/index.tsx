@@ -6,12 +6,14 @@ import Image from "next/image";
 import MigrateTokenModal from "modals/MigrateTokenModal";
 import WrappedSSN from "components/migrator/WrappedSSN";
 import ExxFiMigration from "components/migrator/ExxfiMigration";
+import WHSN from "components/migrator/WHSN";
 
 const Migrator = () => {
-  const [activeTab, setActiveTab] = useState<string>("Wrapped SSN");
+  const [activeTab, setActiveTab] = useState<string>("WSSN");
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const [ssnAmount, setSsnAmount] = useState("");
+  const [hypersonicAmount, setHypersonicAmount] = useState("");
 
   const toggleMigrateTokenModal = () => setIsOpen(!isOpen);
 
@@ -24,21 +26,24 @@ const Migrator = () => {
         <div className="lg:py-12 w-full flex justify-center">
           <div className="w-full lg:w-3/4 xl:w-1/2 bg-white dark:bg-dark1 dark:bg-opacity-40 py-4 lg:py-10 px-4 lg:px-7 rounded-2xl">
             <div className="bg-lightGreen dark:bg-dark3 flex shadow-migrator h-16 p-2 rounded-2xl">
-              <TabButton title="Wrapped SSN" {...{ setActiveTab, activeTab }} />
-              <TabButton
-                title="ExxFi Migration"
-                {...{ setActiveTab, activeTab }}
-              />
+              <TabButton title="WSSN" {...{ setActiveTab, activeTab }} />
+              <TabButton title="WHSN" {...{ setActiveTab, activeTab }} />
+              <TabButton title="EFT" {...{ setActiveTab, activeTab }} />
             </div>
 
-            <div className="pt-7 lg:pt-14 overflow-hidden">
+            <div className="pt-7 overflow-hidden">
               <WrappedSSN
-                isActive={activeTab === "Wrapped SSN"}
+                isActive={activeTab === "WSSN"}
                 toggleMigrateTokenModal={toggleMigrateTokenModal}
                 {...{ setSsnAmount, ssnAmount }}
               />
+              <WHSN
+                isActive={activeTab === "WHSN"}
+                toggleMigrateTokenModal={toggleMigrateTokenModal}
+                {...{ setHypersonicAmount, hypersonicAmount }}
+              />
               <ExxFiMigration
-                isActive={activeTab === "ExxFi Migration"}
+                isActive={activeTab === "EFT"}
                 toggleMigrateTokenModal={toggleMigrateTokenModal}
               />
             </div>

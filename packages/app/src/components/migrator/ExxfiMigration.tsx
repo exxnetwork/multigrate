@@ -9,13 +9,13 @@ const ExxFiMigration = ({ isActive, toggleMigrateTokenModal }) => {
 
   return (
     <div
-      className={`pb-3 transition-all ease-in-out ${
+      className={`transition-all ease-in-out ${
         isActive
           ? "fade-in max-h-max pointer-events-auto"
           : "fade-out max-h-0 pointer-events-none"
       }`}
     >
-      <div className="pb-10">
+      <div className="">
         <h1 className="font-outfit font-normal text-sm text-dark1 text-opacity-50 dark:text-opacity-50 dark:text-grey">
           Select token to migrate from...
         </h1>
@@ -29,7 +29,7 @@ const ExxFiMigration = ({ isActive, toggleMigrateTokenModal }) => {
         </div>
       </div>
 
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center pt-10">
         <h1 className="font-outfit font-normal text-sm text-dark1 text-opacity-50 dark:text-opacity-50 dark:text-grey">
           Enter SSN token Value
         </h1>
