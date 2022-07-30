@@ -7,15 +7,18 @@ import MigrateTokenModal from "modals/MigrateTokenModal";
 import WrappedSSN from "components/migrator/WrappedSSN";
 import ExxFiMigration from "components/migrator/ExxfiMigration";
 import WHSN from "components/migrator/WHSN";
+import MigrateHSNModal from "modals/MigrateHSNModal";
 
 const Migrator = () => {
   const [activeTab, setActiveTab] = useState<string>("WSSN");
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isMigrateHSN, setIsMigrateHSN] = useState<boolean>(false);
 
   const [ssnAmount, setSsnAmount] = useState("");
   const [hypersonicAmount, setHypersonicAmount] = useState("");
 
   const toggleMigrateTokenModal = () => setIsOpen(!isOpen);
+  const toggleMigrateHSNModal = () => setIsMigrateHSN(!isMigrateHSN);
 
   return (
     <DashboardLayout
@@ -31,7 +34,7 @@ const Migrator = () => {
               <TabButton title="EFT" {...{ setActiveTab, activeTab }} />
             </div>
 
-            <div className="pt-7 overflow-hidden">
+            <div className="pt-5 overflow-hidden">
               <WrappedSSN
                 isActive={activeTab === "WSSN"}
                 toggleMigrateTokenModal={toggleMigrateTokenModal}
@@ -39,7 +42,7 @@ const Migrator = () => {
               />
               <WHSN
                 isActive={activeTab === "WHSN"}
-                toggleMigrateTokenModal={toggleMigrateTokenModal}
+                toggleMigrateHSNModal={toggleMigrateHSNModal}
                 {...{ setHypersonicAmount, hypersonicAmount }}
               />
               <ExxFiMigration
@@ -70,6 +73,10 @@ const Migrator = () => {
 
         <MigrateTokenModal
           {...{ isOpen, toggleMigrateTokenModal, ssnAmount }}
+        />
+
+        <MigrateHSNModal
+          {...{ isOpen: isMigrateHSN, toggleMigrateHSNModal, hypersonicAmount }}
         />
       </>
     </DashboardLayout>

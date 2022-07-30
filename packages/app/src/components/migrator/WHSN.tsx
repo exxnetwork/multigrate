@@ -12,11 +12,11 @@ import { formatBalance } from "functions/format";
 import { Oval } from "react-loader-spinner";
 import { toast } from "react-toastify";
 
-const SPENDER_ADDRESS = "0x6346F5B80a1C3A597C6752738e4a6F7dbB284C1B"; // spender address is the migrators contract address
+const SPENDER_ADDRESS = "0x641074c117FC1883F658A40321210d8328167419"; // spender address is the migrators contract address
 
 const WHSN = ({
   isActive,
-  toggleMigrateTokenModal,
+  toggleMigrateHSNModal,
   hypersonicAmount,
   setHypersonicAmount,
 }) => {
@@ -30,6 +30,7 @@ const WHSN = ({
   const [hypersonicBalance, setHypersonicBalance] = useState("");
   const [approving, setApproving] = useState(false);
 
+  console.log("HYPERSONIC", hypersonicContract);
   useEffect(() => {
     if (hypersonicContract) {
       checkAllowance();
@@ -42,7 +43,7 @@ const WHSN = ({
       const res = await hypersonicContract.balanceOf(account);
 
       setHypersonicBalance(
-        Math.floor(Number(ethers.utils.formatEther(res)) * 10 ** 9).toString()
+        Math.floor(Number(ethers.utils.formatEther(res))).toString()
       );
     } catch (error) {
       console.error(error);
@@ -67,20 +68,18 @@ const WHSN = ({
 
     const max = ethers.constants.MaxUint256;
 
-    // console.log("VVVV", ethers.utils.formatUnits(allowance, 9));
-
     try {
-      if (allowance.lt(ethers.utils.parseUnits(hypersonicAmount, 9))) {
+      if (allowance.lt(ethers.utils.parseUnits(hypersonicAmount))) {
         const res = await hypersonicContract.approve(SPENDER_ADDRESS, max);
 
         await res.wait();
         console.log("approve res", res);
 
         setApproving(false);
-        toggleMigrateTokenModal();
+        toggleMigrateHSNModal();
       } else {
         setApproving(false);
-        toggleMigrateTokenModal();
+        toggleMigrateHSNModal();
       }
     } catch (error) {
       console.error("approve err", error);
@@ -98,11 +97,11 @@ const WHSN = ({
     >
       <div className="flex justify-between items-center">
         <h1 className="font-outfit font-normal text-sm text-dark1 dark:text-grey text-opacity-50 dark:text-opacity-50 ">
-          Enter HYPERSONIC token Value
+          Enter HSN token Value
         </h1>
         <h1 className="font-outfit font-bold text-sm text-dark1 dark:text-grey text-opacity-50 dark:text-opacity-50">
           Balance: &nbsp;
-          {hypersonicBalance ? hypersonicBalance : "0"} HYPERSONIC
+          {hypersonicBalance ? hypersonicBalance : "0"} HSN
         </h1>
       </div>
       <form onSubmit={approveMigrationHandler}>
