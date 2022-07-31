@@ -12,7 +12,7 @@ import { formatBalance } from "functions/format";
 import { Oval } from "react-loader-spinner";
 import { toast } from "react-toastify";
 
-const SPENDER_ADDRESS = "0x641074c117FC1883F658A40321210d8328167419"; // spender address is the migrators contract address
+const SPENDER_ADDRESS = "0xb09c720eacabfae14bdb09e1bfd1b645943b4351"; // spender address is the migrators contract address
 
 const WHSN = ({
   isActive,
@@ -69,7 +69,7 @@ const WHSN = ({
     const max = ethers.constants.MaxUint256;
 
     try {
-      if (allowance.lt(ethers.utils.parseUnits(hypersonicAmount))) {
+      if (allowance.lt(ethers.utils.parseUnits(hypersonicAmount, 18))) {
         const res = await hypersonicContract.approve(SPENDER_ADDRESS, max);
 
         await res.wait();
