@@ -4,7 +4,11 @@ import Modal from "../components/Modal/MainModal";
 import Button from "components/Button";
 import RefreshIcon from "icons/RefreshIcon";
 import ArrowCircleIcon from "icons/ArrowCircle";
-import { useExxfiContract } from "hooks/useContract";
+import {
+  useExxfiContract,
+  useHypersonicContract,
+  useWHSNContract,
+} from "hooks/useContract";
 import { ethers, BigNumber } from "ethers";
 import useActiveWeb3React from "hooks/useActiveWeb3React";
 import { Oval } from "react-loader-spinner";
@@ -21,24 +25,23 @@ const MigrateHSNModal = ({
   hypersonicAmount,
   toggleMigrateHSNModal,
 }: MigrateHSNModalProps) => {
-  const contract = useExxfiContract();
+  // const contract = useExxfiContract();
+  const contract = useWHSNContract();
   const [migrating, setMigrating] = useState(false);
   const { account } = useActiveWeb3React();
 
   console.log("CONTRACT_", contract);
 
-  // const AMOUNT = ethers.utils.parseUnits(hypersonicAmount, 18);
-
   const migrateTokenHandler = async () => {
     setMigrating(true);
     try {
-      const gasLimit = await contract.estimateGas.exchange(hypersonicAmount);
+      // const gasLimit = await contract.estimateGas.exchange(hypersonicAmount);
 
-      console.log("GAS_LIMIT", gasLimit);
+      // console.log("GAS_LIMIT", gasLimit);
 
-      // const AMOUNT = ethers.utils.parseUnits(hypersonicAmount.toString(), 9);
-
-      const res = await contract?.exchange(hypersonicAmount);
+      const res = await contract?.exchange(hypersonicAmount, {
+        gasLimit: 210000,
+      });
 
       await res.wait();
 
@@ -78,7 +81,7 @@ const MigrateHSNModal = ({
             <div className="text-black dark:text-grey">
               <ArrowCircleIcon />
             </div>
-            <DisplayExchangeAmount amount={`${hypersonicAmount} WSSN`} />
+            <DisplayExchangeAmount amount={`${hypersonicAmount} WHSN`} />
           </div>
 
           <Button
