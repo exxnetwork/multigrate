@@ -25,8 +25,8 @@ const MigrateHSNModal = ({
   hypersonicAmount,
   toggleMigrateHSNModal,
 }: MigrateHSNModalProps) => {
-  // const contract = useExxfiContract();
-  const contract = useWHSNContract();
+  const contract = useExxfiContract();
+  // const contract = useWHSNContract();
   const [migrating, setMigrating] = useState(false);
   const { account } = useActiveWeb3React();
 

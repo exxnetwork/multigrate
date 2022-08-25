@@ -65,6 +65,7 @@ export default function WalletModal({ ENSName }: { ENSName?: string }) {
           return null;
         }
         console.log("here", (window as any).web3, window.ethereum, option);
+
         if (!(window as any).web3 && !window?.ethereum) {
           if (option.name === "MetaMask") {
             return (

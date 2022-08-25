@@ -10,7 +10,6 @@ import HYPERSONIC_ABI_TESTNET from "../constants/hypersonic_abi.json";
 import WHSN_ABI from "../constants/whsn_abi.json";
 import { useActiveWeb3React } from "./useActiveWeb3React";
 import {
-  cyrusMarketAddress,
   EXXFI_CONTRACT_ADDRESS,
   HYPERSONIC_CONTRACT_ADDRESS,
   SSN_CONTRACT_ADDRESS,
@@ -26,15 +25,11 @@ export function useSSNToken(): Contract | null {
 }
 
 export function useWHSNContract(): Contract | null {
-  return useContract(WHSN_CONTRACT_ADDRESS, WHSN_ABI, true);
+  return useContract(WHSN_CONTRACT_ADDRESS, ABI_TESTNET, true);
 }
 
 export function useHypersonicContract(): Contract | null {
   return useContract(HYPERSONIC_CONTRACT_ADDRESS, HYPERSONIC_ABI_TESTNET, true);
-}
-
-export function useCyrusMarketContract(): Contract | null {
-  return useContract(cyrusMarketAddress, CYRUS_MARKET_ABI, true);
 }
 
 // returns null on errors
