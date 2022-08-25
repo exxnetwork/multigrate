@@ -69,7 +69,7 @@ const WHSN = ({
     const max = ethers.constants.MaxUint256;
 
     try {
-      if (allowance.lt(ethers.utils.parseUnits(hypersonicAmount, 18))) {
+      if (allowance.lt(ethers.utils.parseUnits(hypersonicAmount))) {
         const res = await hypersonicContract.approve(SPENDER_ADDRESS, max);
 
         await res.wait();
