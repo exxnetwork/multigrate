@@ -1,13 +1,7 @@
 export const NetworkContextName = "NETWORK";
-//new
-// 0xb8A0Ac78ac06bBBDF105703Fadc362cc54C9AF8E
-export const cyrusMarketAddress = "0x4dd66C6EFC5ee38dB19559C3F44409545Ee62Bc6";
-// export const cyrusMarketAddress = "0x276D1b1fc17c68000f09a34d709d67876664a51c";
 
-// new
 export const EXXFI_CONTRACT_ADDRESS =
   "0x6346F5B80a1C3A597C6752738e4a6F7dbB284C1B";
-// export const EXXFI_CONTRACT_ADDRESS = "0x900bA7b42185Ff51fED7335DCF7d27b7EcF315B7"
 
 export const SSN_CONTRACT_ADDRESS =
   "0x89d453108bD94B497bBB4496729cd26f92Aba533";
