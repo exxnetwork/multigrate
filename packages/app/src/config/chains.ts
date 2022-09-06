@@ -163,9 +163,7 @@ export const CHAINS: {
 
   56: {
     urls: [
-      "https://bsc-dataseed1.binance.org",
-      "https://bsc-dataseed2.binance.org",
-      "https://bsc-dataseed3.binance.org",
+      "https://ultra-newest-snowflake.bsc.discover.quiknode.pro/7a7d8a8ceafd8c238fb2c64557641e4bb86904f5",
     ].filter((url) => url !== undefined),
     name: "BSC",
   },
